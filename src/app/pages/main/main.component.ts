@@ -10,6 +10,7 @@ export class MainComponent implements OnInit {
 
   isLoggedIn = false;
   quotes: any;
+  isLoading = false;
 
   constructor(
     private marketService: MarketService,
@@ -18,6 +19,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void { }
 
   async loggedIn (isLogged: boolean) {
+    this.isLoading = true;
     if(isLogged) {
       const data = await this.marketService.getQuotes()
       .toPromise()
@@ -25,6 +27,7 @@ export class MainComponent implements OnInit {
       this.quotes = data;
     }
     this.isLoggedIn = isLogged;
+    this.isLoading = false;
   }
 
 }

@@ -13,12 +13,31 @@
                             </tr>
                         </thead>
                         <tbody *ngIf="!isLoggedIn">
+                            <tr *ngIf="isLoading">
+                                <div class="d-flex justify-content-center">
+                                    <div class="spinner-border" role="status">
+                                      <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                  </div>
+                            </tr>
+
                             <tr class="table-log-out">
                                 You must be logged in to obtain information about quotations
                             </tr>
                         </tbody>
 
                         <tbody *ngIf="isLoggedIn">
+                            <tr class="fw-bolder" *ngIf="isLoading">
+                                <div class="d-flex justify-content-center">
+                                    <div class="spinner-border" role="status">
+                                      <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                  </div>
+                            </tr>
+
+                            <tr class="fw-bolder" *ngIf="isLoading">
+                                Loading
+                            </tr>
                             <tr class="col-12">
                                 <td class="col-6">
                                     <tr>Last</tr>
