@@ -1,0 +1,80 @@
+<app-header (loggedIn)="loggedIn($event)"></app-header>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title fw-bolder">Market data</h4>
+                <div class="table-responsive">
+                    <table class="table table-border">
+                        <thead>
+                            <tr class="fw-bolder">
+                                Key data
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="!isLoggedIn">
+                            <tr class="table-log-out">
+                                You must be logged in to obtain information about quotations
+                            </tr>
+                        </tbody>
+
+                        <tbody *ngIf="isLoggedIn">
+                            <tr class="col-12">
+                                <td class="col-6">
+                                    <tr>Last</tr>
+                                    <tr>Close</tr>
+                                </td>
+                                <td class="col-3">
+                                    <tr>{{quotes.LVAL_NORM.v}}</tr>
+                                    <tr>{{quotes.CLOSE_ADJ_NORM.v}}</tr>
+                                </td>
+                                <td class="col-3 date-quotes">
+                                    <tr>{{quotes.LVAL_NORM.d | date:'HH:mm:ss'}}</tr>
+                                    <tr>{{quotes.CLOSE_ADJ_NORM.d | date:'dd/MM/YYYY'}}</tr>
+                                </td>
+                            </tr>
+
+                            <tr class="col-12">
+                                <td class="col-6">
+                                    <tr>Day Change %</tr>
+                                    <tr>Day Change</tr>
+                                </td>
+                                <td class="col-3">
+                                    <tr *ngIf="quotes.NC2_PR_NORM.v | colors as result" [ngStyle]="{color: result}">{{quotes.NC2_PR_NORM.v | number:'.0-2'}}%</tr>
+                                    <tr *ngIf="quotes.NC2_NORM.v | colors as result" [ngStyle]="{color: result}">{{quotes.NC2_NORM.v}}</tr>
+                                </td>
+                                <td class="col-3"></td>
+                            </tr>
+
+                            <tr class="col-12">
+                                <td class="col-6">
+                                    <tr>Volume</tr>
+                                    <tr>Turnover</tr>
+                                </td>
+                                <td class="col-3">
+                                    <tr>{{quotes.VOL.v | thousands}}</tr>
+                                    <tr>{{quotes.TUR.v | thousands}}</tr>
+                                </td>
+                                <td class="col-3"></td>
+                            </tr>
+
+                            <tr class="col-12">
+                                <td class="col-6">
+                                    <tr>Previous year close</tr>
+                                    <tr>YTD %</tr>
+                                </td>
+                                <td class="col-3">
+                                    <tr>{{quotes.PY_CLOSE.v}}</tr>
+                                    <tr *ngIf="quotes.YTD_PR_NORM.v | colors as result" [ngStyle]="{color: result}">{{quotes.YTD_PR_NORM.v | number:'.0-2'}}%</tr>
+                                </td>
+                                <td class="col-3 date-quotes">
+                                    <tr>{{quotes.PY_CLOSE.d | date:'dd/MM/YYYY'}}</tr>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

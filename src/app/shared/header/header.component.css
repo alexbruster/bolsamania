@@ -1,0 +1,10 @@
+.header {
+    background-color: rgb(226, 222, 222);
+    height: 6%;
+    border-radius: 4px;
+    padding: 1rem;
+}
+
+h1.title {
+    margin-bottom: 0;
+}
